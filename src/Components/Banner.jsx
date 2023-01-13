@@ -1,45 +1,55 @@
 import { Col, Container, Row} from "react-bootstrap"
-import { ArrowRightCircle } from "react-bootstrap-icons"
+
 import { useState, useEffect } from "react"
 import headerImg from '../assets/img/header-img.svg'
 import 'animate.css'
 import TrackVisibility from "react-on-screen"
 
+
+
 export const Banner = () => {
-    const toRotate = ['Software Engineer'];
+    const toRotate ='Software Engineer';
     const [loopNumber, setLoopNumber] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [text, setText] = useState('');
     const period = 2000;
     const [delta, setDelta] = useState(300 - Math.random() * 100);
     
+
+
+
     useEffect (() => {
+        
+        function tick(){
+            let i = loopNumber % toRotate.length;
+            let fullText = toRotate[i];
+            let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+    
+            setText(updatedText);
+    
+            if(isDeleting) {
+                setDelta(prevDelta => prevDelta /2)
+            }
+    
+            if(!isDeleting && updatedText === fullText){
+                setIsDeleting(true);
+                setDelta(period);
+            } else if (isDeleting && updatedText === '')
+            setIsDeleting(false)
+            setLoopNumber(loopNumber + 1);
+            setDelta(500)
+        }
+
         let ticker = setInterval(() => {
             tick();
             
         }, delta)
         return () => { clearInterval(ticker)};
-    }, [text])
+    }, [text, delta, isDeleting, loopNumber, toRotate])
 
-    const tick = () => {
-        let i = loopNumber % toRotate.length;
-        let fullText = toRotate[i];
-        let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+    
 
-        setText(updatedText);
 
-        if(isDeleting) {
-            setDelta(prevDelta => prevDelta /2)
-        }
-
-        if(!isDeleting && updatedText === fullText){
-            setIsDeleting(true);
-            setDelta(period);
-        } else if (isDeleting && updatedText === '')
-        setIsDeleting(false)
-        setLoopNumber(loopNumber + 1);
-        setDelta(500)
-    }
     return (
         <section className='banner' id='home'>
             <Container>
@@ -56,8 +66,7 @@ export const Banner = () => {
                         <hr></hr>
                         <p>I enjoy soccer, anime and I hope to travel to another country one day.</p></p>
                         <hr></hr>
-                        <p>I have a background in the hospitality industry dealing directly with guest relations and daily management operations. Personally I enjoy helping others be comfortable. I have found that Software Engineering allows me to provide assistance and peace of mind to many individuals by tackling problems head-on and breaking them down to smaller problems I know I can resolve efficiently.
-</p>
+                        <p>I have a background in the hospitality industry dealing directly with guest relations and daily management operations. Personally I enjoy helping others be comfortable. I have found that Software Engineering allows me to provide assistance and peace of mind to many individuals by tackling problems head-on and breaking them down to smaller problems I know I can resolve efficiently.</p>
                         {/* <button onClick={() => console.log('connect')}>Let's Connect <ArrowRightCircle size={25}/> </button> */}
                     </div>}
                     </TrackVisibility>
