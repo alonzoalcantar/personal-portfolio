@@ -2,7 +2,7 @@ import { Navbar, Container, Nav } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import logo from '../assets/img/logo.svg'
 import navIcon1 from '../assets/img/nav-icon1.svg'
-import navIcon2 from '../assets/img/nav-icon2.svg'
+
 import navIcon3 from '../assets/img/nav-icon3.svg'
 
 
@@ -42,19 +42,17 @@ export const NavBar = () => {
             <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className="me-auto">
                 <Nav.Link href='#home' className= {activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('home')} >Home</Nav.Link>
-                <Nav.Link href='#link' className= {activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('about')}>About Me</Nav.Link>
-                <Nav.Link href='#link' className= {activeLink === 'skills' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('skills')}>Skills</Nav.Link>
-                <Nav.Link href='#link' className= {activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('projects')}>Projects</Nav.Link>
-                <Nav.Link href='#link' className= {activeLink === 'contact' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('contact')}>Contact</Nav.Link>
+                <Nav.Link href='#skills' className= {activeLink === 'skills' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('skills')}>Skills</Nav.Link>
+                <Nav.Link href='#project' className= {activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('projects')}>Projects</Nav.Link>
+                <Nav.Link href='#connect' className= {activeLink === 'contact' ? 'active navbar-link' : 'navbar-link'} onClick= {() => onUpdateActiveLink('contact')}>Contact</Nav.Link>
 
             </Nav>
             <span className='navbar-text'>
                 <div className='social-icon'>
-                    <a href='#'><img src={navIcon1} alt = ''/></a>
-                    <a href='#'><img src={navIcon2} alt = ''/></a>
-                    <a href='#'><img src={navIcon3} alt = ''/></a>
+                    <a href='https://www.linkedin.com/in/alonzo-pino-alcantar/'><img src={navIcon1} alt = ''/></a>
+                    <a href='https://github.com/alonzoalcantar'><img src={navIcon3} alt = ''/></a>
                 </div>
-                <button className="button" onClick={() => console.log('connect')}><span>Let's Connect</span></button>
+                {/* <button className="button" onClick={() => console.log('connect')}><span>Let's Connect</span></button> */}
             </span>
             </Navbar.Collapse>
         </Container>

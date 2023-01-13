@@ -4,7 +4,8 @@ import "react-multi-carousel/lib/styles.css";
 import meter1 from '../assets/img/meter1.svg';
 import meter2 from '../assets/img/meter2.svg';
 import meter3 from '../assets/img/meter3.svg';
-import colorSharp from '../assets/img/color-sharp.png';
+import react from '../assets/img/react.svg';
+import django from '../assets/img/django.svg';
 
 export const Skills = () => {
     const responsive = {
@@ -33,26 +34,26 @@ export const Skills = () => {
                     <Col>
                     <div className='skill-bx'>
                         <h2>Skills</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        <p></p>
                         <Carousel responsive={responsive} infinite={true} className='skill-slider'>
                         <div className='item'>
-                            <img src={meter1} alt='image' />
+                            <img src={meter1} alt='' />
                             <h5>Html</h5>
                         </div>
                         <div className='item'>
-                            <img src={meter2} alt='image' />
+                            <img src={meter2} alt='' />
                             <h5>CSS</h5>
                         </div>
                         <div className='item'>
-                            <img src={meter1} alt='image' />
+                            <img src={meter3} alt='' />
                             <h5>Javascript</h5>
                         </div>
                         <div className='item'>
-                            <img src={meter3} alt='image' />
+                            <img src={react} alt='' />
                             <h5>React</h5>
                         </div>
                         <div className='item'>
-                            <img src={meter2} alt='image' />
+                            <img src={django} alt='' />
                             <h5>Django</h5>
                         </div>
                         </Carousel>                    
@@ -60,7 +61,7 @@ export const Skills = () => {
                     </Col>
                 </Row>
             </Container>
-            <img className='backgroung-image-left' src={colorSharp}/>
+            
         </section>
       )
 }
