@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 // server used to send send emails
 const app = express();
 app.use(cors());
+app.use(express.static(path.join('public')));
 app.use(express.json());
 app.use("/", router);
 app.listen(3001, () => console.log("Server Running"));

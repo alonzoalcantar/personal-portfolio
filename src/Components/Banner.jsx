@@ -11,7 +11,7 @@ export const Banner = () => {
     const toRotate ='Software Engineer';
     const [loopNumber, setLoopNumber] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
-    const [text, setText] = useState('');
+    const [text, setText] = useState('Software Engineer');
     const period = 2000;
     const [delta, setDelta] = useState(300 - Math.random() * 100);
     
@@ -21,8 +21,7 @@ export const Banner = () => {
     useEffect (() => {
         
         function tick(){
-            let i = loopNumber % toRotate.length;
-            let fullText = toRotate[i];
+            let fullText = toRotate;
             let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
     
             setText(updatedText);
@@ -35,7 +34,7 @@ export const Banner = () => {
                 setIsDeleting(true);
                 setDelta(period);
             } else if (isDeleting && updatedText === '')
-            setIsDeleting(false)
+            setText('Software Engineer')
             setLoopNumber(loopNumber + 1);
             setDelta(500)
         }
