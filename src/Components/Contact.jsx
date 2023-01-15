@@ -1,132 +1,111 @@
-// import { useState } from "react";
-// import emailjs from 'emailjs-com'
-// import { Container, Row, Col } from "react-bootstrap";
-// import contactImg from "../assets/img/contact-img.svg";
-// import 'animate.css';
-// import TrackVisibility from 'react-on-screen';
+import { useRef } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import contactImg from "../assets/img/contact-img.svg";
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
+import emailjs from '@emailjs/browser';
+
+export const Contact = () => {
+
+
+
+
+  const form = useRef()
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+ 
+
+    emailjs.sendForm('service_r90to0d', 'template_4r6gpqe', form.current, 'k29HTIw-Rq49cAEkN')
+    .then((result) => {
+        console.log(result.text);
+    }, (error) => {
+        console.log(error.text);
+    });
+
+    form.current.reset()
+    };
+
+
+
+  return (
+    <section className="contact" id="connect">
+      <Container>
+        <Row className="align-items-center">
+          <Col size={12} md={6}>
+            <TrackVisibility>
+              {({ isVisible }) =>
+                <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
+              }
+            </TrackVisibility>
+          </Col>
+          <Col size={12} md={6}>
+            <TrackVisibility>
+              {({ isVisible }) =>
+                <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+                <h2>Get In Touch</h2>
+                <form ref={form} onSubmit={handleSubmit}>
+                   <Row>
+                    <Col size={12} sm={6} className="px-1">
+                      <input type="text"  name='first_name' placeholder="First Name"  />
+                    </Col>
+                    <Col size={12} sm={6} className="px-1">
+                      <input type="text" name='last_name' placeholder="Last Name" />
+                    </Col>
+                    <Col size={12} sm={6} className="px-1">
+                      <input type="email"  name='email_address' placeholder="Email Address"  />
+                    </Col>
+                    <Col size={12} sm={6} className="px-1">
+                      <input type="tel" name= 'phone_number' placeholder="Phone No."/>
+                    </Col>
+                    <Col size={12} className="px-1">
+                      <textarea rows="6"  name= 'message' placeholder="Message" ></textarea>
+                      <input type="submit" value="Send" />
+                    </Col>
+  
+                  </Row> 
+
+
+                </form>
+              </div>}
+            </TrackVisibility>
+          </Col>
+        </Row>
+      </Container>
+    </section>
+  )
+}
+
+
+
+// import React, { useRef } from 'react';
+// import emailjs from '@emailjs/browser';
 
 // export const Contact = () => {
-//   const formInitialDetails = {
-//     firstName: '',
-//     lastName: '',
-//     email: '',
-//     phone: '',
-//     message: ''
-//   }
-//   const [formDetails, setFormDetails] = useState(formInitialDetails);
-//   const [buttonText, setButtonText] = useState('Send');
-//   const [status, setStatus] = useState({});
+//   const form = useRef();
 
-//   const onFormUpdate = (category, value) => {
-//       setFormDetails({
-//         ...formDetails,
-//         [category]: value
-//       })
-//   }
-
-//   const handleSubmit = async (e) => {
+//   const sendEmail = (e) => {
 //     e.preventDefault();
-//     setButtonText("Sending...");
-//     let response = await fetch("http://localhost:3000/contact", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json;charset=utf-8",
-//       },
-//       body: JSON.stringify(formDetails),
-//     });
-//     setButtonText("Send");
-//     let result = await response.json();
-//     setFormDetails(formInitialDetails);
-//     if (result.code === 200) {
-//       setStatus({ succes: true, message: 'Message sent successfully'});
-//     } else {
-//       setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
-//     }
-//   };
 
-
-
+// emailjs.sendForm('gmail', 'template_4r6gpqe', form.current, 'k29HTIw-Rq49cAEkN')
+//   .then((result) => {
+//       console.log(result.text);
+//   }, (error) => {
+//       console.log(error.text);
+//   });
+// };
 
 
 //   return (
-//     <section className="contact" id="connect">
-//       <Container>
-//         <Row className="align-items-center">
-//           <Col size={12} md={6}>
-//             <TrackVisibility>
-//               {({ isVisible }) =>
-//                 <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
-//               }
-//             </TrackVisibility>
-//           </Col>
-//           <Col size={12} md={6}>
-//             <TrackVisibility>
-//               {({ isVisible }) =>
-//                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-//                 <h2>Get In Touch</h2>
-//                 <form onSubmit={handleSubmit}>
-//                   <Row>
-//                     <Col size={12} sm={6} className="px-1">
-//                       <input type="text" value={formDetails.firstName} name='first_name' placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
-//                     </Col>
-//                     <Col size={12} sm={6} className="px-1">
-//                       <input type="text" value={formDetails.lasttName} name='last_name' placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)}/>
-//                     </Col>
-//                     <Col size={12} sm={6} className="px-1">
-//                       <input type="email" value={formDetails.email} name='email_address' placeholder="Email Address" onChange={(e) => onFormUpdate('email', e.target.value)} />
-//                     </Col>
-//                     <Col size={12} sm={6} className="px-1">
-//                       <input type="tel" value={formDetails.phone} name= 'phone_number' placeholder="Phone No." onChange={(e) => onFormUpdate('phone', e.target.value)}/>
-//                     </Col>
-//                     <Col size={12} className="px-1">
-//                       <textarea rows="6" value={formDetails.message} name= 'message' placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)}></textarea>
-//                       <button type="submit"><span>{buttonText}</span></button>
-//                     </Col>
-//                     {
-//                       status.message &&
-//                       <Col>
-//                         <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
-//                       </Col>
-//                     }
-//                   </Row>
-//                 </form>
-//               </div>}
-//             </TrackVisibility>
-//           </Col>
-//         </Row>
-//       </Container>
-//     </section>
-//   )
-// }
-
-
-
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-
-export const ContactUs = () => {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
-  };
-
-  return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
-    </form>
-  );
-};
+//     <form ref={form} onSubmit={sendEmail}>
+    //   <label>Name</label>
+    //   <input type="text" name="user_name" />
+    //   <label>Email</label>
+    //   <input type="email" name="user_email" />
+    //   <label>Message</label>
+    //   <textarea name="message" />
+    //   <input type="submit" value="Send" />
+//     </form>
+//   );
+// };
