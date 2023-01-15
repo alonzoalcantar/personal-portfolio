@@ -18,53 +18,53 @@ app.use(bodyParser.json());
 
 
 // app.listen(3001, () => console.log("Server Running"));
-app.get('/express_backend', (req, res) => { //Line 9
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-  });
-console.log(process.env.EMAIL_USER);
-console.log(process.env.EMAIL_PASS);
+// app.get('/express_backend', (req, res) => { //Line 9
+//     res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
+//   });
+// console.log(process.env.EMAIL_USER);
+// console.log(process.env.EMAIL_PASS);
 
-EMAIL_USER = process.env.EMAIL_USER;
-EMAIL_PASS = process.env.EMAIL_PASS;
+// EMAIL_USER = process.env.EMAIL_USER;
+// EMAIL_PASS = process.env.EMAIL_PASS;
 
-const contactEmail = nodemailer.createTransport({
-  service: 'gmail',
-  providerauth: {
-    user: EMAIL_USER,
-    pass: EMAIL_PASS
-  },
-});
+// const contactEmail = nodemailer.createTransport({
+//   service: 'gmail',
+//   providerauth: {
+//     user: EMAIL_USER,
+//     pass: EMAIL_PASS
+//   },
+// });
 
-contactEmail.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
-  }
-});
+// contactEmail.verify((error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("Ready to Send");
+//   }
+// });
 
-router.post("/contact", (req, res) => {
-  const name = req.body.firstName + req.body.lastName;
-  const email = req.body.email;
-  const message = req.body.message;
-  const phone = req.body.phone;
-  const mail = {
-    from: name,
-    to: "alcantar.alonzo03@gmail.com",
-    subject: "Contact Form Submission - Portfolio",
-    html: `<p>Name: ${name}</p>
-           <p>Email: ${email}</p>
-           <p>Phone: ${phone}</p>
-           <p>Message: ${message}</p>`,
-  };
-  contactEmail.sendMail(mail, (error) => {
-    if (error) {
-      res.json(error);
-    } else {
-      res.json({ code: 200, status: "Message Sent" });
-    }
-  });
-});
+// router.post("/contact", (req, res) => {
+//   const name = req.body.firstName + req.body.lastName;
+//   const email = req.body.email;
+//   const message = req.body.message;
+//   const phone = req.body.phone;
+//   const mail = {
+//     from: name,
+//     to: "alcantar.alonzo03@gmail.com",
+//     subject: "Contact Form Submission - Portfolio",
+//     html: `<p>Name: ${name}</p>
+//            <p>Email: ${email}</p>
+//            <p>Phone: ${phone}</p>
+//            <p>Message: ${message}</p>`,
+//   };
+//   contactEmail.sendMail(mail, (error) => {
+//     if (error) {
+//       res.json(error);
+//     } else {
+//       res.json({ code: 200, status: "Message Sent" });
+//     }
+//   });
+// });
 
 
 app.get('/*', function(req, res) {
